@@ -4,13 +4,13 @@ import RPi.GPIO as GPIO
 
 mode = GPIO.getmode()
 
-GPIO.cleanup()
+#GPIO.cleanup()
 
-Forward = 26
-Backward = 20
+Forward = 23
+Backward = 24
 sleeptime = 1
 
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
 GPIO.setup(Forward, GPIO.OUT)
 GPIO.setup(Backward, GPIO.OUT)
 
@@ -32,4 +32,4 @@ def reverse(x):
 while True:
     forward(5)
     reverse(5)
-    GPIO.cleanup()
+    #GPIO.cleanup()
