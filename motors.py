@@ -24,7 +24,7 @@ def set_angle(angle):
 
 while True:
     objects = get_from_firebase()
-    angle = objects['angle']
+    angle = int(objects['angle'])
 
     sleep(1)
     set_angle(angle)
