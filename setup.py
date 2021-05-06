@@ -17,3 +17,7 @@ motor_state = ref.get()['motor_state']
 print(f"angle: {angle}")
 print(f"direction: {direction}")
 print(f"motor_state: {motor_state}")
+
+
+def get_from_firebase():
+    return ref.get()

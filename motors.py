@@ -1,26 +1,33 @@
 import RPi.GPIO as GPIO
 from time import sleep
 from random import randint
+from setup import get_from_firebase
+
+servo_pin = 11
 
 GPIO.setmode(GPIO.BOARD)
-GPIO.setup(11, GPIO.OUT)
+GPIO.setup(servo_pin, GPIO.OUT)
 
-pwm=GPIO.PWM(11, 50)
+pwm = GPIO.PWM(servo_pin, 50)
 pwm.start(0)
 
-def setAngle(angle):
+
+def set_angle(angle):
     duty = angle / 18 + 3
-    GPIO.output(11, True)
+
+    GPIO.output(servo_pin, True)
     pwm.ChangeDutyCycle(duty)
     sleep(1)
-    GPIO.output(11, False)
+    GPIO.output(servo_pin, False)
     pwm.ChangeDutyCycle(duty)
+
 
 while True:
-    sleep(1)
-    x = randint(0,180)
-    setAngle(x)
+    objects = get_from_firebase()
+    angle = objects['angle']
 
+    sleep(1)
+    set_angle(angle)
 
 pwm.stop()
 GPIO.cleanup()
