@@ -26,6 +26,7 @@ while True:
     sleep(0.05)
     objects = get_from_firebase()
     angle = float(objects['angle'])
+    print(f"Angle:{angle}")
     set_angle(angle)
 
 pwm.stop()
